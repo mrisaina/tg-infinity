@@ -13,9 +13,12 @@ async function startConsoleWithPuppeteer() {
   const password = process.env.PYTHONANYWHERE_PASSWORD;
 
   if (!username || !password) {
+    console.log(username);
+    console.log(password);
     console.error("Username or password is not defined.");
     return;
   }
+
   console.log(username);
   console.log(password);
 
