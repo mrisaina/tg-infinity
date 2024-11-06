@@ -52,7 +52,6 @@ async function deleteConsole(consoleId) {
 
 async function runFileOnPythonAnywhere() {
   const url = `https://www.pythonanywhere.com/api/v0/user/${username}/consoles/`;
-  const command = `python3.10 ${fileName}`;
 
   try {
     const response = await fetch(url, {
@@ -81,16 +80,73 @@ async function runFileOnPythonAnywhere() {
   }
 }
 
+async function getConsoleStatus(consoleId) {
+  const url = `https://www.pythonanywhere.com/api/v0/user/${username}/consoles/${consoleId}/`;
+
+  try {
+    const response = await fetch(url, {
+      method: "GET",
+      headers: {
+        Authorization: `Token ${token}`,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch console status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log(`Console status for ID ${consoleId}:`, data);
+    return data;
+  } catch (error) {
+    console.error("Error fetching console status:", error);
+    return null;
+  }
+}
+
+async function runScriptInConsole(consoleId) {
+  const url = `https://www.pythonanywhere.com/api/v0/user/${username}/consoles/${consoleId}/run/`;
+
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        Authorization: `Token ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to run script in console: ${response.status}`);
+    }
+
+    console.log(`Script started in console with ID ${consoleId}.`);
+  } catch (error) {
+    console.error("Error running script in console:", error);
+  }
+}
+
+function wait(seconds) {
+  return new Promise((resolve) => setTimeout(resolve, seconds * 1000));
+}
+
 (async () => {
   const consoles = await getConsoles();
 
   if (consoles && consoles.length > 0) {
-    console.log(consoles);
     const firstConsoleId = consoles[0].id;
     await deleteConsole(firstConsoleId);
   } else {
     console.log("No consoles to delete.");
   }
 
-  await runFileOnPythonAnywhere();
+  const newConsoleId = await runFileOnPythonAnywhere();
+  console.log(newConsoleId);
+
+  if (newConsoleId) {
+    await runScriptInConsole(newConsoleId);
+  }
+
+  console.log("Waiting for 4-5 seconds...");
+  await wait(5);
 })();

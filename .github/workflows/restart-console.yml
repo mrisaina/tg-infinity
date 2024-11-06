@@ -25,4 +25,4 @@ jobs:
         env:
           PYTHONANYWHERE_USERNAME: ${{ secrets.PYTHONANYWHERE_USERNAME }}
           PYTHONANYWHERE_TOKEN: ${{ secrets.PYTHONANYWHERE_TOKEN }}
-        run: node runBotScript.js
+        run: node runConsole.js
