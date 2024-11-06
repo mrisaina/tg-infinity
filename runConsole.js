@@ -13,13 +13,23 @@ function delay(time) {
 }
 
 async function startConsoleWithPuppeteer() {
+  if (!username || !password) {
+    console.error("Username or password is not defined.");
+    return;
+  }
+  console.log(username);
+  console.log(password);
+
   const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
 
   await page.goto("https://www.pythonanywhere.com/login/");
   await delay(2000);
 
+  await page.screenshot({ path: "login_page.png" });
+
   // Login
+  console.log("Typing username and password...");
   await page.type('[name="auth-username"]', username);
   await page.type('[name="auth-password"]', password);
   await page.click('button[type="submit"]');
