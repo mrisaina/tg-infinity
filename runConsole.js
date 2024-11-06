@@ -9,19 +9,6 @@ function delay(time) {
 }
 
 async function startConsoleWithPuppeteer() {
-  // const username = "mrisaina1";
-  // const password = process.env.PYTHONANYWHERE_PASSWORD;
-
-  // if (!username || !password) {
-  //   console.log(username);
-  //   console.log(password);
-  //   console.error("Username or password is not defined.");
-  //   return;
-  // }
-
-  // console.log(username);
-  // console.log(password);
-
   const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
 
@@ -39,7 +26,7 @@ async function startConsoleWithPuppeteer() {
 
   console.log("Logged in successfully");
 
-  await page.goto(`https://www.pythonanywhere.com/user/${username}/consoles/`);
+  await page.goto(`https://www.pythonanywhere.com/user/mrisaina1/consoles/`);
   await page.waitForNetworkIdle();
 
   await page.click(".item_remove_link");
