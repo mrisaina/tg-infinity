@@ -9,18 +9,18 @@ function delay(time) {
 }
 
 async function startConsoleWithPuppeteer() {
-  const username = "mrisaina1";
-  const password = process.env.PYTHONANYWHERE_PASSWORD;
+  // const username = "mrisaina1";
+  // const password = process.env.PYTHONANYWHERE_PASSWORD;
 
-  if (!username || !password) {
-    console.log(username);
-    console.log(password);
-    console.error("Username or password is not defined.");
-    return;
-  }
+  // if (!username || !password) {
+  //   console.log(username);
+  //   console.log(password);
+  //   console.error("Username or password is not defined.");
+  //   return;
+  // }
 
-  console.log(username);
-  console.log(password);
+  // console.log(username);
+  // console.log(password);
 
   const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
@@ -32,8 +32,8 @@ async function startConsoleWithPuppeteer() {
 
   // Login
   console.log("Typing username and password...");
-  await page.type('[name="auth-username"]', username);
-  await page.type('[name="auth-password"]', password);
+  await page.type('[name="auth-username"]', "mrisaina1");
+  await page.type('[name="auth-password"]', "Aria9651!");
   await page.click('button[type="submit"]');
   await page.waitForNavigation();
 
