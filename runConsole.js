@@ -2,8 +2,6 @@ import puppeteer from "puppeteer";
 import dotenv from "dotenv";
 dotenv.config();
 
-const username = process.env.PYTHONANYWHERE_USERNAME;
-const password = process.env.PYTHONANYWHERE_PASSWORD;
 const fileName = `/home/${username}/tg-bot-inf.py`;
 
 function delay(time) {
@@ -13,6 +11,9 @@ function delay(time) {
 }
 
 async function startConsoleWithPuppeteer() {
+  const username = process.env.PYTHONANYWHERE_USERNAME;
+  const password = process.env.PYTHONANYWHERE_PASSWORD;
+
   if (!username || !password) {
     console.error("Username or password is not defined.");
     return;
