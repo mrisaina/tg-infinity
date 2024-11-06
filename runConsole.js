@@ -9,7 +9,7 @@ function delay(time) {
 }
 
 async function startConsoleWithPuppeteer() {
-  const username = process.env.PYTHONANYWHERE_USERNAME;
+  const username = "mrisaina1";
   const password = process.env.PYTHONANYWHERE_PASSWORD;
 
   if (!username || !password) {
