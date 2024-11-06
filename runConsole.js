@@ -17,6 +17,7 @@ async function startConsoleWithPuppeteer() {
   const page = await browser.newPage();
 
   await page.goto("https://www.pythonanywhere.com/login/");
+  await delay(2000);
 
   // Login
   await page.type('[name="auth-username"]', username);
