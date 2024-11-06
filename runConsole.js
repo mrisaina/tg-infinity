@@ -16,7 +16,6 @@ async function startConsoleWithPuppeteer() {
   const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
 
-  // Step 1: Navigate to PythonAnywhere login page
   await page.goto("https://www.pythonanywhere.com/login/");
 
   // Login
