@@ -39,7 +39,7 @@ async function startConsoleWithPuppeteer() {
   await page.waitForNetworkIdle();
   await page.click(".run_button");
   console.log("New console started");
-  await delay(6000);
+  await delay(12000);
 
   await browser.close();
 }
