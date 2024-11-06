@@ -2,8 +2,6 @@ import puppeteer from "puppeteer";
 import dotenv from "dotenv";
 dotenv.config();
 
-const fileName = `/home/${username}/tg-bot-inf.py`;
-
 function delay(time) {
   return new Promise(function (resolve) {
     setTimeout(resolve, time);
