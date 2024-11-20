@@ -19,8 +19,14 @@ async function startConsoleWithPuppeteer() {
 
   // Login
   console.log("Typing username and password...");
-  await page.type('[name="auth-username"]', "mrisaina1");
-  await page.type('[name="auth-password"]', "Aria9651!");
+  await page.type(
+    '[name="auth-username"]',
+    process.env.PYTHONANYWHERE_USERNAME
+  );
+  await page.type(
+    '[name="auth-password"]',
+    process.env.PYTHONANYWHERE_PASSWORD
+  );
   await page.click('button[type="submit"]');
   await page.waitForNavigation();
 
